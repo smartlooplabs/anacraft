@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>anacraft — your Google Analytics expert</title>
-<meta name="description" content="Ask your Google Analytics questions in plain English through an MCP server. Create a GA4 property and its tag from the dashboard, audit what it is measuring, and read it on a free terminal dashboard.">
+<title>anacraft — Google Analytics in your terminal</title>
+<meta name="description" content="A free, open-source Google Analytics 4 dashboard for your terminal. Install with one command, watch visitors live, audit what GA4 is measuring, get Slack alerts — and ask it in plain English over MCP.">
 <meta name="keywords" content="Google Analytics expert, GA4 consultant, Google Analytics consultant, GA4 audit, audit Google Analytics, configure Google Analytics, set up GA4, create GA4 property, GA4 measurement id, gtag snippet, GA4 CLI, GA4 dashboard, GA4 terminal dashboard, Google Analytics 4, Google Analytics CLI, analytics TUI, GA4 MCP server">
 <link rel="canonical" href="https://anacraft.dev/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://anacraft.dev/">
-<meta property="og:title" content="anacraft — Ask GA4 in plain English.">
-<meta property="og:description" content="Ask your Google Analytics questions in plain English through an MCP server. Create a GA4 property and its tag from the dashboard, audit what it is measuring, and read it on a free terminal dashboard.">
+<meta property="og:title" content="anacraft — GA4, live in your terminal.">
+<meta property="og:description" content="A free, open-source Google Analytics 4 dashboard for your terminal. Install with one command, watch visitors live, audit what GA4 is measuring, get Slack alerts — and ask it in plain English over MCP.">
 <meta property="og:image" content="https://anacraft.dev/dash.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://anacraft.dev/dash.png">
@@ -259,7 +259,7 @@
   /* Centred, not top-aligned: the panel is shorter than the sentence beside
      it, and centring is what splits that slack evenly above and below rather
      than dropping it all under the panel. */
-  .hero-art { display: none; justify-self: end; align-self: center; }
+  .hero-art { display: none; justify-self: end; align-self: center; position: relative; }
   @media (min-width: 1180px) {
     .hero-in { grid-template-columns: minmax(0, 1fr) auto; }
     .hero-art { display: block; }
@@ -352,6 +352,14 @@
      each reads as its own place. `--ink` is that shade in every palette. */
   .band { background: var(--ink); }
   .dashview { padding: 84px 0 72px; border-top: 1px solid var(--line); }
+  /* The dashboard is the hero's second half: no rule, no gap of its own,
+     straight on from the install command. */
+  .hero:has(+ .hero-dash) { padding: 56px 0 36px; }
+  .hero:has(+ .hero-dash) h1 { font-size: clamp(34px, 6vw, 68px); max-width: none; }
+  .hero:has(+ .hero-dash) .lede { margin-top: 18px; max-width: 64ch; }
+  .hero:has(+ .hero-dash) .cta { margin-top: 26px; }
+  .hero:has(+ .hero-dash) .cta .flow { width: auto; margin-top: 0; }
+  .dashview.hero-dash { padding-top: 0; border-top: 0; }
   .feat {
     display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px;
   }
@@ -655,6 +663,7 @@
     <div class="nav-links">
       <a href="/audit.html">Audit</a>
       <a href="/alerts.html">Alerts</a>
+      <a href="/mcp.html">MCP</a>
       <a href="/lovable.html">Lovable</a>
       <a href="/burn.html">Badge</a>
       <a href="/pricing.html">Pricing</a>
@@ -664,64 +673,32 @@
 </nav>
 <!-- nav:end -->
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="wrap hero-in">
    <div class="hero-say">
-    <div class="eyebrow">Google Analytics · MCP</div>
-    <h1>Ask GA4 in<br><em>plain English.</em></h1>
+    <div class="eyebrow">Google Analytics · Terminal</div>
+    <h1>GA4, live in your <em>terminal.</em></h1>
     <p class="lede">
-      Ask Claude, or any AI tool, how your site is doing. The answer comes from your own GA4.
+      A free, open-source Google Analytics dashboard. <b>One command to install</b>, demo data
+      until you sign in, then your own visitors, pages and countries — updating as they arrive.
     </p>
     <div class="cta">
-      <a class="go" href="/mcp.html">Configure your MCP <span aria-hidden="true">→</span></a>
-      <a class="price" href="/pricing.html">only $9.99 / month</a>
-      <div class="flow">
-        <span class="n">Your AI</span><span class="a">→</span><span class="n on">anacraft MCP</span><span class="a">→</span><span class="n">GA4</span>
-      </div>
-    </div>
-    <p class="also"><a href="/mcp.html">The MCP server</a> — connecting Claude, ChatGPT or Cursor, and what it can answer.</p>
-   </div>
-   <div class="hero-art" aria-hidden="true"><pre id="ask" class="pnl"></pre></div>
-  </div>
-</header>
-
-<section id="lovable" class="band">
-  <div class="wrap feat">
-   <div class="feat-say">
-    <div class="sec-label">Lovable</div>
-    <h2>Analytics for your<br><em>Lovable app.</em></h2>
-    <p class="sec-sub">Sign in, pick or create the GA4 property for your app, and paste one
-      prompt into Lovable. It adds the tag — nothing to install. Then ask Claude how
-      the app is doing, through <a href="/mcp.html">craft mcp</a>.</p>
-    <a class="go" href="/app/">Get your tag <span aria-hidden="true">→</span></a>
-    <p class="also"><a href="/lovable.html">anacraft × Lovable</a> — the whole setup, step by step.</p>
-   </div>
-   <div class="feat-art" aria-hidden="true">
-    <div class="lockup">
-     <div class="lk"><img src="lovable-logo.svg" alt="" width="104" height="104"><b>Lovable</b><span>builds the app</span></div>
-     <div class="lk-x">×</div>
-     <div class="lk"><svg viewBox="1 1 14 14" width="104" height="104" shape-rendering="crispEdges" fill="currentColor"><rect x="6" y="1" width="4" height="1"/><rect x="5" y="2" width="6" height="1"/><rect x="4" y="3" width="8" height="1"/><rect x="4" y="4" width="8" height="1"/><rect x="3" y="5" width="4" height="1"/><rect x="9" y="5" width="4" height="1"/><rect x="3" y="6" width="4" height="1"/><rect x="9" y="6" width="4" height="1"/><rect x="2" y="7" width="4" height="1"/><rect x="10" y="7" width="4" height="1"/><rect x="2" y="8" width="4" height="1"/><rect x="10" y="8" width="4" height="1"/><rect x="1" y="9" width="4" height="1"/><rect x="11" y="9" width="4" height="1"/><rect x="1" y="10" width="14" height="1"/><rect x="1" y="11" width="14" height="1"/><rect x="1" y="12" width="4" height="1"/><rect x="11" y="12" width="4" height="1"/><rect x="1" y="13" width="4" height="1"/><rect x="11" y="13" width="4" height="1"/><rect x="1" y="14" width="4" height="1"/><rect x="11" y="14" width="4" height="1"/></svg><b>anacraft</b><span>reads the numbers</span></div>
-    </div>
-   </div>
-  </div>
-</section>
-
-<div class="dashview" id="dashboard">
-  <div class="wrap">
-    <div class="feat">
-     <div class="feat-say">
-      <div class="sec-label">In the terminal</div>
-      <h2>Watch your analytics<br>on a <em>terminal dashboard.</em></h2>
-      <p class="sec-sub">A free GA4 dashboard that runs in your terminal. Install it, run
-      <code style="font-family:var(--mono);color:var(--fg)">craft</code>, and it opens on demo data until you sign in.</p>
       <button class="install" onclick="cp(this)">
         <span class="p">$</span>
         <span class="c">curl -fsSL https://anacraft.dev/install.sh | bash</span>
         <span class="copy" aria-label="Copy install command"><svg viewBox="0 0 16 16" aria-hidden="true"><g class="sheet"><rect x="5.9" y="5.9" width="8.2" height="8.2"/><path d="M10.4 3.4a1.5 1.5 0 0 0-1.5-1.5H3.4a1.5 1.5 0 0 0-1.5 1.5v5.5a1.5 1.5 0 0 0 1.5 1.5"/></g><path class="tick" d="M3 8.6l3.2 3.2L13 4.8"/></svg></span>
       </button>
-     </div>
-     <div class="feat-art" aria-hidden="true"><pre id="chart" class="pnl"></pre><canvas id="chart-dots"></canvas></div>
+      
+      <div class="flow">
+        <span class="n on">free</span><span class="n">open source</span><span class="n">macOS · Linux · Windows</span><span class="n">no Google Cloud project</span>
+      </div>
     </div>
+   </div>
+  </div>
+</header>
+
+<div class="dashview hero-dash" id="dashboard">
+  <div class="wrap">
     <div class="dash-head">
       <div class="tabs" role="tablist">
         <button role="tab" aria-selected="true" data-theme="osaka-jade" data-bg="#09100d"><span class="sw" style="background:#2dd5b7"></span>Osaka Jade</button>
@@ -2270,7 +2247,109 @@
   </div>
 </div>
 
-<section id="alerts" class="band">
+<section id="start">
+  <div class="wrap">
+    <div class="sec-label">Quick start</div>
+    <h2>Two minutes from curl to numbers.</h2>
+    <p class="sec-sub">
+      Official builds carry their own OAuth client, so <code style="font-family:var(--mono);color:var(--fg)">craft login</code> needs no
+      Google Cloud project. No property yet? <a href="/app/" style="color:var(--jade)">Create one from the dashboard</a>,
+      then connect it here. Everything on this page is free.
+    </p>
+    <div class="two">
+      <div>
+        <pre class="code"><span class="d"># the dashboard, on demo data</span>
+<span class="c">$</span> <span class="w">craft</span>
+
+<span class="d"># connect your GA4 property</span>
+<span class="c">$</span> <span class="w">craft login</span>
+<span class="c">$</span> <span class="w">craft props</span>
+<span class="c">$</span> <span class="w">craft use 1234567</span>
+
+<span class="d"># one-shot reports</span>
+<span class="c">$</span> <span class="w">craft overview --days 30</span>
+<span class="c">$</span> <span class="w">craft pages</span>
+<span class="c">$</span> <span class="w">craft realms</span></pre>
+      </div>
+      <div>
+        <table class="keys">
+          <tr><th>Key</th><th>In the dashboard</th></tr>
+          <tr><td><kbd>1</kbd>–<kbd>7</kbd></td><td><b>Toggle a panel</b> — or <kbd>b</kbd> <kbd>l</kbd> <kbd>p</kbd> <kbd>d</kbd> <kbd>m</kbd> <kbd>v</kbd> <kbd>g</kbd></td></tr>
+          <tr><td><kbd>tab</kbd></td><td><b>Next property</b> — cycles what <code style="font-family:var(--mono)">craft use</code> has added</td></tr>
+          <tr><td><kbd>t</kbd></td><td><b>Cycle the palette</b>, and save it</td></tr>
+          <tr><td><kbd>r</kbd></td><td><b>Rebuild</b> — force a refetch now</td></tr>
+          <tr><td><kbd>?</kbd> <kbd>h</kbd></td><td><b>Help overlay</b></td></tr>
+          <tr><td><kbd>q</kbd> <kbd>esc</kbd></td><td><b>Quit</b></td></tr>
+        </table>
+        <table class="keys" style="margin-top:38px">
+          <tr><th>Command</th><th>What it does</th></tr>
+          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">craft</code></td><td>Opens the dashboard — <code style="font-family:var(--mono)">dash</code> is the default</td></tr>
+        </table>
+        <table class="keys" style="margin-top:38px">
+          <tr><th>Path</th><th>What lives there</th></tr>
+          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">~/.config/anacraft/config.toml</code></td><td>Properties and their settings</td></tr>
+          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">~/.anacraft/token.json</code></td><td>OAuth refresh token</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="audit" class="band">
+  <div class="wrap">
+    <div class="sec-label">Audit</div>
+    <h2>Before you trust a number.</h2>
+    <p class="sec-sub">
+      <code style="font-family:var(--mono);color:var(--fg)">craft audit</code> checks whether your property is measuring the site
+      correctly: sixteen checks over four weeks, each finding graded with what fixes it.
+      <code style="font-family:var(--mono)">--fix</code> applies the ones Google Analytics can repair itself.
+    </p>
+    <div class="two">
+      <div>
+        <pre class="code"><span class="d"># sixteen checks over the last 28 days</span>
+<span class="c">$</span> <span class="w">craft audit</span>
+
+<span class="d"># ...and apply the ones GA4 can fix itself</span>
+<span class="c">$</span> <span class="w">craft audit --fix</span>
+
+<span class="d"># see the whole shape of a report, no account</span>
+<span class="c">$</span> <span class="w">craft audit --demo</span>
+
+<span class="d">█ KEY EVENTS NEVER FIRED</span>
+<span class="d">  purchase, generate_lead</span>
+<span class="d">  configured as an outcome and not recorded</span>
+<span class="d">  once in 28 days…</span>
+<span class="d">█ PURCHASES ARRIVE WITHOUT THEIR MONEY</span>
+<span class="d">  412 purchases · 0 revenue</span>
+<span class="d">▓ A PAYMENT PAGE IS CREDITED WITH CONVERSIONS</span>
+<span class="d">  checkout.stripe.com</span>
+
+<span class="d">  12 checks run · 2 critical · 1 warning</span></pre>
+      </div>
+      <div>
+        <table class="keys">
+          <tr><th>Finds</th><th>Which is</th></tr>
+          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">no key events</code></td><td><b>Traffic arriving and nothing marked as the point</b> — no report on the property can say whether any of it was worth having</td></tr>
+          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">never fired</code></td><td>A key event configured and not recorded once. Names match exactly, so <code style="font-family:var(--mono)">Purchase</code> and <code style="font-family:var(--mono)">purchase</code> are two events and only one counts</td></tr>
+          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">no revenue</code></td><td><b>Purchases arriving without their value</b> — every revenue and ROAS figure reads zero, including in an Ads account importing from here</td></tr>
+          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">counted twice</code></td><td>A bounce rate near nothing with the page views doubled — the shape a second <code style="font-family:var(--mono)">page_view</code> tag makes</td></tr>
+          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">self-referral</code></td><td>The site or a payment page credited with its own conversions, because the return trip starts a fresh session</td></tr>
+          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">went quiet</code></td><td>An event that fired last month and not this one — a tag removed, renamed, or moved behind something that no longer runs</td></tr>
+        </table>
+        <p class="sec-sub" style="margin-top:22px">
+          It reports the symptom and names the usual cause, never the other way
+          round — and every check has a floor, so a quiet property gets
+          <i>not run</i> rather than a list of things to dismiss. Exits
+          <code style="font-family:var(--mono)">2</code> when it finds something,
+          so a weekly audit into Slack is one cron line.
+          <a href="/audit.html" style="color:var(--jade)">What the audit checks &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="alerts">
   <div class="wrap">
     <div class="feat">
      <div class="feat-say">
@@ -2324,7 +2403,45 @@
   </div>
 </section>
 
-<section id="badge">
+<section id="mcp" class="band">
+  <div class="wrap feat">
+   <div class="feat-say">
+    <div class="sec-label">MCP</div>
+    <h2>Rather ask than look?<br><em>Ask in plain English.</em></h2>
+    <p class="sec-sub"><code style="font-family:var(--mono);color:var(--fg)">craft mcp</code> hands the same numbers
+      to Claude, ChatGPT, Cursor or any MCP client, so you can ask how the site is doing and get the
+      answer from your own GA4.</p>
+    <div class="flow">
+      <span class="n">Your AI</span><span class="a">→</span><span class="n on">anacraft MCP</span><span class="a">→</span><span class="n">GA4</span>
+    </div>
+    <p class="also"><a href="/mcp.html">Set up the MCP server</a> — part of the <a href="/pricing.html">$9.99 / month plan</a>.</p>
+   </div>
+   <div class="feat-art" aria-hidden="true"><pre id="ask" class="pnl"></pre></div>
+  </div>
+</section>
+
+<section id="lovable">
+  <div class="wrap feat">
+   <div class="feat-say">
+    <div class="sec-label">Lovable</div>
+    <h2>Analytics for your<br><em>Lovable app.</em></h2>
+    <p class="sec-sub">Sign in, pick or create the GA4 property for your app, and paste one
+      prompt into Lovable. It adds the tag — nothing to install. Then ask Claude how
+      the app is doing, through <a href="/mcp.html">craft mcp</a>.</p>
+    <a class="go" href="/app/">Get your tag <span aria-hidden="true">→</span></a>
+    <p class="also"><a href="/lovable.html">anacraft × Lovable</a> — the whole setup, step by step.</p>
+   </div>
+   <div class="feat-art" aria-hidden="true">
+    <div class="lockup">
+     <div class="lk"><img src="lovable-logo.svg" alt="" width="104" height="104"><b>Lovable</b><span>builds the app</span></div>
+     <div class="lk-x">×</div>
+     <div class="lk"><svg viewBox="1 1 14 14" width="104" height="104" shape-rendering="crispEdges" fill="currentColor"><rect x="6" y="1" width="4" height="1"/><rect x="5" y="2" width="6" height="1"/><rect x="4" y="3" width="8" height="1"/><rect x="4" y="4" width="8" height="1"/><rect x="3" y="5" width="4" height="1"/><rect x="9" y="5" width="4" height="1"/><rect x="3" y="6" width="4" height="1"/><rect x="9" y="6" width="4" height="1"/><rect x="2" y="7" width="4" height="1"/><rect x="10" y="7" width="4" height="1"/><rect x="2" y="8" width="4" height="1"/><rect x="10" y="8" width="4" height="1"/><rect x="1" y="9" width="4" height="1"/><rect x="11" y="9" width="4" height="1"/><rect x="1" y="10" width="14" height="1"/><rect x="1" y="11" width="14" height="1"/><rect x="1" y="12" width="4" height="1"/><rect x="11" y="12" width="4" height="1"/><rect x="1" y="13" width="4" height="1"/><rect x="11" y="13" width="4" height="1"/><rect x="1" y="14" width="4" height="1"/><rect x="11" y="14" width="4" height="1"/></svg><b>anacraft</b><span>reads the numbers</span></div>
+    </div>
+   </div>
+  </div>
+</section>
+
+<section id="badge" class="band">
   <div class="wrap feat">
    <div class="feat-say">
     <div class="sec-label">Badge</div>
@@ -2345,108 +2462,6 @@
      <div class="bdg-row"><span class="bdg-chip"><svg xmlns="http://www.w3.org/2000/svg" width="112" height="24" viewBox="0 0 93 20" role="img" aria-label="12 sites"><rect width="93" height="20" rx="3" fill="#002b36"/><rect width="24" height="20" rx="3" fill="#586e75" fill-opacity="0.45"/><rect x="21" width="3" height="20" fill="#586e75" fill-opacity="0.45"/><g transform="translate(6,4.0) scale(0.8571)" fill="#2aa198" shape-rendering="crispEdges"><rect x="5" y="0" width="4" height="1"/><rect x="4" y="1" width="6" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="3" y="3" width="8" height="1"/><rect x="2" y="4" width="4" height="1"/><rect x="8" y="4" width="4" height="1"/><rect x="2" y="5" width="4" height="1"/><rect x="8" y="5" width="4" height="1"/><rect x="1" y="6" width="4" height="1"/><rect x="9" y="6" width="4" height="1"/><rect x="1" y="7" width="4" height="1"/><rect x="9" y="7" width="4" height="1"/><rect x="0" y="8" width="4" height="1"/><rect x="10" y="8" width="4" height="1"/><rect x="0" y="9" width="14" height="1"/><rect x="0" y="10" width="14" height="1"/><rect x="0" y="11" width="4" height="1"/><rect x="10" y="11" width="4" height="1"/><rect x="0" y="12" width="4" height="1"/><rect x="10" y="12" width="4" height="1"/><rect x="0" y="13" width="4" height="1"/><rect x="10" y="13" width="4" height="1"/></g><g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11"><text x="58.5" y="14" text-anchor="middle"><tspan fill="#2aa198" font-weight="700">12</tspan><tspan fill="#839496"> sites</tspan></text></g></svg></span><span class="bdg-chip"><svg xmlns="http://www.w3.org/2000/svg" width="112" height="24" viewBox="0 0 93 20" role="img" aria-label="12 sites"><rect width="93" height="20" rx="3" fill="#1a1b26"/><rect width="24" height="20" rx="3" fill="#393f51" fill-opacity="0.45"/><rect x="21" width="3" height="20" fill="#393f51" fill-opacity="0.45"/><g transform="translate(6,4.0) scale(0.8571)" fill="#7aa2f7" shape-rendering="crispEdges"><rect x="5" y="0" width="4" height="1"/><rect x="4" y="1" width="6" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="3" y="3" width="8" height="1"/><rect x="2" y="4" width="4" height="1"/><rect x="8" y="4" width="4" height="1"/><rect x="2" y="5" width="4" height="1"/><rect x="8" y="5" width="4" height="1"/><rect x="1" y="6" width="4" height="1"/><rect x="9" y="6" width="4" height="1"/><rect x="1" y="7" width="4" height="1"/><rect x="9" y="7" width="4" height="1"/><rect x="0" y="8" width="4" height="1"/><rect x="10" y="8" width="4" height="1"/><rect x="0" y="9" width="14" height="1"/><rect x="0" y="10" width="14" height="1"/><rect x="0" y="11" width="4" height="1"/><rect x="10" y="11" width="4" height="1"/><rect x="0" y="12" width="4" height="1"/><rect x="10" y="12" width="4" height="1"/><rect x="0" y="13" width="4" height="1"/><rect x="10" y="13" width="4" height="1"/></g><g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11"><text x="58.5" y="14" text-anchor="middle"><tspan fill="#7aa2f7" font-weight="700">12</tspan><tspan fill="#c0caf5"> sites</tspan></text></g></svg></span><span class="bdg-chip"><svg xmlns="http://www.w3.org/2000/svg" width="112" height="24" viewBox="0 0 93 20" role="img" aria-label="12 sites"><rect width="93" height="20" rx="3" fill="#1e1e2e"/><rect width="24" height="20" rx="3" fill="#45475a" fill-opacity="0.45"/><rect x="21" width="3" height="20" fill="#45475a" fill-opacity="0.45"/><g transform="translate(6,4.0) scale(0.8571)" fill="#94e2d5" shape-rendering="crispEdges"><rect x="5" y="0" width="4" height="1"/><rect x="4" y="1" width="6" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="3" y="3" width="8" height="1"/><rect x="2" y="4" width="4" height="1"/><rect x="8" y="4" width="4" height="1"/><rect x="2" y="5" width="4" height="1"/><rect x="8" y="5" width="4" height="1"/><rect x="1" y="6" width="4" height="1"/><rect x="9" y="6" width="4" height="1"/><rect x="1" y="7" width="4" height="1"/><rect x="9" y="7" width="4" height="1"/><rect x="0" y="8" width="4" height="1"/><rect x="10" y="8" width="4" height="1"/><rect x="0" y="9" width="14" height="1"/><rect x="0" y="10" width="14" height="1"/><rect x="0" y="11" width="4" height="1"/><rect x="10" y="11" width="4" height="1"/><rect x="0" y="12" width="4" height="1"/><rect x="10" y="12" width="4" height="1"/><rect x="0" y="13" width="4" height="1"/><rect x="10" y="13" width="4" height="1"/></g><g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11"><text x="58.5" y="14" text-anchor="middle"><tspan fill="#94e2d5" font-weight="700">12</tspan><tspan fill="#cdd6f4"> sites</tspan></text></g></svg></span><span class="bdg-chip"><svg xmlns="http://www.w3.org/2000/svg" width="112" height="24" viewBox="0 0 93 20" role="img" aria-label="12 sites"><rect width="93" height="20" rx="3" fill="#fdf6e3"/><rect width="24" height="20" rx="3" fill="#93a1a1" fill-opacity="0.45"/><rect x="21" width="3" height="20" fill="#93a1a1" fill-opacity="0.45"/><g transform="translate(6,4.0) scale(0.8571)" fill="#2aa198" shape-rendering="crispEdges"><rect x="5" y="0" width="4" height="1"/><rect x="4" y="1" width="6" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="3" y="3" width="8" height="1"/><rect x="2" y="4" width="4" height="1"/><rect x="8" y="4" width="4" height="1"/><rect x="2" y="5" width="4" height="1"/><rect x="8" y="5" width="4" height="1"/><rect x="1" y="6" width="4" height="1"/><rect x="9" y="6" width="4" height="1"/><rect x="1" y="7" width="4" height="1"/><rect x="9" y="7" width="4" height="1"/><rect x="0" y="8" width="4" height="1"/><rect x="10" y="8" width="4" height="1"/><rect x="0" y="9" width="14" height="1"/><rect x="0" y="10" width="14" height="1"/><rect x="0" y="11" width="4" height="1"/><rect x="10" y="11" width="4" height="1"/><rect x="0" y="12" width="4" height="1"/><rect x="10" y="12" width="4" height="1"/><rect x="0" y="13" width="4" height="1"/><rect x="10" y="13" width="4" height="1"/></g><g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11"><text x="58.5" y="14" text-anchor="middle"><tspan fill="#2aa198" font-weight="700">12</tspan><tspan fill="#657b83"> sites</tspan></text></g></svg></span><span class="bdg-chip"><svg xmlns="http://www.w3.org/2000/svg" width="112" height="24" viewBox="0 0 93 20" role="img" aria-label="12 sites"><rect width="93" height="20" rx="3" fill="#fafbfe"/><rect width="24" height="20" rx="3" fill="#c8cfda" fill-opacity="0.45"/><rect x="21" width="3" height="20" fill="#c8cfda" fill-opacity="0.45"/><g transform="translate(6,4.0) scale(0.8571)" fill="#0969da" shape-rendering="crispEdges"><rect x="5" y="0" width="4" height="1"/><rect x="4" y="1" width="6" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="3" y="3" width="8" height="1"/><rect x="2" y="4" width="4" height="1"/><rect x="8" y="4" width="4" height="1"/><rect x="2" y="5" width="4" height="1"/><rect x="8" y="5" width="4" height="1"/><rect x="1" y="6" width="4" height="1"/><rect x="9" y="6" width="4" height="1"/><rect x="1" y="7" width="4" height="1"/><rect x="9" y="7" width="4" height="1"/><rect x="0" y="8" width="4" height="1"/><rect x="10" y="8" width="4" height="1"/><rect x="0" y="9" width="14" height="1"/><rect x="0" y="10" width="14" height="1"/><rect x="0" y="11" width="4" height="1"/><rect x="10" y="11" width="4" height="1"/><rect x="0" y="12" width="4" height="1"/><rect x="10" y="12" width="4" height="1"/><rect x="0" y="13" width="4" height="1"/><rect x="10" y="13" width="4" height="1"/></g><g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11"><text x="58.5" y="14" text-anchor="middle"><tspan fill="#0969da" font-weight="700">12</tspan><tspan fill="#242938"> sites</tspan></text></g></svg></span><span class="bdg-chip"><svg xmlns="http://www.w3.org/2000/svg" width="112" height="24" viewBox="0 0 93 20" role="img" aria-label="12 sites"><rect width="93" height="20" rx="3" fill="#0d1117"/><rect width="24" height="20" rx="3" fill="#30363d" fill-opacity="0.45"/><rect x="21" width="3" height="20" fill="#30363d" fill-opacity="0.45"/><g transform="translate(6,4.0) scale(0.8571)" fill="#39c5cf" shape-rendering="crispEdges"><rect x="5" y="0" width="4" height="1"/><rect x="4" y="1" width="6" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="3" y="3" width="8" height="1"/><rect x="2" y="4" width="4" height="1"/><rect x="8" y="4" width="4" height="1"/><rect x="2" y="5" width="4" height="1"/><rect x="8" y="5" width="4" height="1"/><rect x="1" y="6" width="4" height="1"/><rect x="9" y="6" width="4" height="1"/><rect x="1" y="7" width="4" height="1"/><rect x="9" y="7" width="4" height="1"/><rect x="0" y="8" width="4" height="1"/><rect x="10" y="8" width="4" height="1"/><rect x="0" y="9" width="14" height="1"/><rect x="0" y="10" width="14" height="1"/><rect x="0" y="11" width="4" height="1"/><rect x="10" y="11" width="4" height="1"/><rect x="0" y="12" width="4" height="1"/><rect x="10" y="12" width="4" height="1"/><rect x="0" y="13" width="4" height="1"/><rect x="10" y="13" width="4" height="1"/></g><g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11"><text x="58.5" y="14" text-anchor="middle"><tspan fill="#39c5cf" font-weight="700">12</tspan><tspan fill="#c9d1d9"> sites</tspan></text></g></svg></span></div>
     </div>
    </div>
-  </div>
-</section>
-
-<section id="start">
-  <div class="wrap">
-    <div class="sec-label">Quick start</div>
-    <h2>Two minutes from curl to numbers.</h2>
-    <p class="sec-sub">
-      Official builds carry their own OAuth client, so <code style="font-family:var(--mono);color:var(--fg)">craft login</code> needs no
-      Google Cloud project. No property yet? <a href="/app/" style="color:var(--jade)">Create one from the dashboard</a>,
-      then connect it here. Everything on this page is free.
-    </p>
-    <div class="two">
-      <div>
-        <pre class="code"><span class="d"># the dashboard, on demo data</span>
-<span class="c">$</span> <span class="w">craft</span>
-
-<span class="d"># connect your GA4 property</span>
-<span class="c">$</span> <span class="w">craft login</span>
-<span class="c">$</span> <span class="w">craft props</span>
-<span class="c">$</span> <span class="w">craft use 1234567</span>
-
-<span class="d"># one-shot reports</span>
-<span class="c">$</span> <span class="w">craft overview --days 30</span>
-<span class="c">$</span> <span class="w">craft pages</span>
-<span class="c">$</span> <span class="w">craft realms</span></pre>
-      </div>
-      <div>
-        <table class="keys">
-          <tr><th>Key</th><th>In the dashboard</th></tr>
-          <tr><td><kbd>1</kbd>–<kbd>7</kbd></td><td><b>Toggle a panel</b> — or <kbd>b</kbd> <kbd>l</kbd> <kbd>p</kbd> <kbd>d</kbd> <kbd>m</kbd> <kbd>v</kbd> <kbd>g</kbd></td></tr>
-          <tr><td><kbd>tab</kbd></td><td><b>Next property</b> — cycles what <code style="font-family:var(--mono)">craft use</code> has added</td></tr>
-          <tr><td><kbd>t</kbd></td><td><b>Cycle the palette</b>, and save it</td></tr>
-          <tr><td><kbd>r</kbd></td><td><b>Rebuild</b> — force a refetch now</td></tr>
-          <tr><td><kbd>?</kbd> <kbd>h</kbd></td><td><b>Help overlay</b></td></tr>
-          <tr><td><kbd>q</kbd> <kbd>esc</kbd></td><td><b>Quit</b></td></tr>
-        </table>
-        <table class="keys" style="margin-top:38px">
-          <tr><th>Command</th><th>What it does</th></tr>
-          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">craft</code></td><td>Opens the dashboard — <code style="font-family:var(--mono)">dash</code> is the default</td></tr>
-        </table>
-        <table class="keys" style="margin-top:38px">
-          <tr><th>Path</th><th>What lives there</th></tr>
-          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">~/.config/anacraft/config.toml</code></td><td>Properties and their settings</td></tr>
-          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">~/.anacraft/token.json</code></td><td>OAuth refresh token</td></tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="audit">
-  <div class="wrap">
-    <div class="sec-label">Audit</div>
-    <h2>Before you trust a number.</h2>
-    <p class="sec-sub">
-      <code style="font-family:var(--mono);color:var(--fg)">craft audit</code> checks whether your property is measuring the site
-      correctly: sixteen checks over four weeks, each finding graded with what fixes it.
-      <code style="font-family:var(--mono)">--fix</code> applies the ones Google Analytics can repair itself.
-    </p>
-    <div class="two">
-      <div>
-        <pre class="code"><span class="d"># sixteen checks over the last 28 days</span>
-<span class="c">$</span> <span class="w">craft audit</span>
-
-<span class="d"># ...and apply the ones GA4 can fix itself</span>
-<span class="c">$</span> <span class="w">craft audit --fix</span>
-
-<span class="d"># see the whole shape of a report, no account</span>
-<span class="c">$</span> <span class="w">craft audit --demo</span>
-
-<span class="d">█ KEY EVENTS NEVER FIRED</span>
-<span class="d">  purchase, generate_lead</span>
-<span class="d">  configured as an outcome and not recorded</span>
-<span class="d">  once in 28 days…</span>
-<span class="d">█ PURCHASES ARRIVE WITHOUT THEIR MONEY</span>
-<span class="d">  412 purchases · 0 revenue</span>
-<span class="d">▓ A PAYMENT PAGE IS CREDITED WITH CONVERSIONS</span>
-<span class="d">  checkout.stripe.com</span>
-
-<span class="d">  12 checks run · 2 critical · 1 warning</span></pre>
-      </div>
-      <div>
-        <table class="keys">
-          <tr><th>Finds</th><th>Which is</th></tr>
-          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">no key events</code></td><td><b>Traffic arriving and nothing marked as the point</b> — no report on the property can say whether any of it was worth having</td></tr>
-          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">never fired</code></td><td>A key event configured and not recorded once. Names match exactly, so <code style="font-family:var(--mono)">Purchase</code> and <code style="font-family:var(--mono)">purchase</code> are two events and only one counts</td></tr>
-          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">no revenue</code></td><td><b>Purchases arriving without their value</b> — every revenue and ROAS figure reads zero, including in an Ads account importing from here</td></tr>
-          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">counted twice</code></td><td>A bounce rate near nothing with the page views doubled — the shape a second <code style="font-family:var(--mono)">page_view</code> tag makes</td></tr>
-          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">self-referral</code></td><td>The site or a payment page credited with its own conversions, because the return trip starts a fresh session</td></tr>
-          <tr><td style="width:auto"><code style="font-family:var(--mono);color:var(--fg)">went quiet</code></td><td>An event that fired last month and not this one — a tag removed, renamed, or moved behind something that no longer runs</td></tr>
-        </table>
-        <p class="sec-sub" style="margin-top:22px">
-          It reports the symptom and names the usual cause, never the other way
-          round — and every check has a floor, so a quiet property gets
-          <i>not run</i> rather than a list of things to dismiss. Exits
-          <code style="font-family:var(--mono)">2</code> when it finds something,
-          so a weekly audit into Slack is one cron line.
-          <a href="/audit.html" style="color:var(--jade)">What the audit checks &rarr;</a>
-        </p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2503,7 +2518,12 @@
 
 <script>
   function cp(el) {
-    navigator.clipboard.writeText(el.querySelector('.c').textContent.trim()).then(function () {
+    var cmd = el.querySelector('.c').textContent.trim();
+    // The site's conversion: a copied command, by which one and from where.
+    if (window.gtag) gtag('event', 'copy_command', {
+      command: cmd, section: (el.closest('[id]') || {}).id || 'close'
+    });
+    navigator.clipboard.writeText(cmd).then(function () {
       el.classList.add('done');
       setTimeout(function () { el.classList.remove('done'); }, 1600);
     });
